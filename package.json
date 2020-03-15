@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha \"test/**/*.spec.js\""
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,10 @@
     "express": "4.17.1",
     "graphql": "14.6.0",
     "require-smart": "1.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-mocha": "^6.3.0",
+    "mocha": "7.1.0"
   }
 }

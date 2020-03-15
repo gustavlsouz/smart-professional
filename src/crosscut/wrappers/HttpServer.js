@@ -20,6 +20,11 @@ module.exports = class HttpServer {
         return this
     }
 
+    useAlways(func) {
+        this.application.use(func)
+        return this
+    }
+
     listen() {
         this.logger.log(`Initializing http server on port ${this.port}`)
         this.application.listen(this.port)
