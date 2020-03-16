@@ -2,7 +2,6 @@ const config = require('./config')
 const Indexer = require('./src/crosscut/wrappers/Indexer')
 
 const graphqlHTTP = require('express-graphql');
-const { buildSchema } = require('graphql');
 
 async function init() {
     const indexer = new Indexer()
@@ -10,24 +9,10 @@ async function init() {
     // eslint-disable-next-line no-console
     console.log(JSON.stringify(dependencies, null, 2))
     const httpServer = new dependencies.crosscut.wrappers.HttpServer()
-    const schema = buildSchema(`
-    type Value {
-        BRL: String
-    }
 
-    type Plan {
-        consultationDate: String
-        description: String
-        value: Value
-    }
-    
-    type Query {
-        plan: Plan
-    }
-  `);
     const { connect } = dependencies.tools
     const rootValue = {
-        plan: connect({
+        plans: connect({
             method: dependencies.services.plans.get,
             props: {
                 logger: console,
@@ -37,12 +22,15 @@ async function init() {
     };
 
     httpServer.useAlways((_, response, next) => {
-        Object.assign(response.locals, { dependencies })
+        Object.assign(response.locals, {
+            dependencies,
+            config,
+        })
         return next()
     }).use('/querying', graphqlHTTP({
-        schema: schema,
+        schema: dependencies.schema,
         rootValue,
-        graphiql: true,
+        graphiql: config.graphiql,
     }))
 
     return httpServer

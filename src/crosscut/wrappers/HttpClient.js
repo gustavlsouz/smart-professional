@@ -14,6 +14,7 @@ module.exports = class HttpClient {
                 method: options.method,
                 url: options.url,
                 data: options.data,
+                params: options.params,
             })
             this.logger.log('Http Request finished. ', options.url)
             this.logger.log(response.data)

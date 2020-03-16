@@ -1,0 +1,16 @@
+type Tariff {
+    description: String
+    BRL: String
+    USD: String
+    EUR: String
+}
+
+type Plan {
+    consultationDate: String
+    description: String
+    tariffs: [Tariff]
+}
+
+type Query {
+    plans: [Plan]
+}
