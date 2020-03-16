@@ -21,9 +21,12 @@ const get = async (properties) => {
             consultationDate: new Date(plans.createdAt).toJSON(),
             description: plan.type,
             tariffs: plan.tariffs.map(tariff => {
-                const BRL = tariff.value * (1 / money.value.BRL)
-                const USD = tariff.value * (1 / money.value.USD)
-                const EUR = tariff.value * (1 / money.value.EUR)
+                const factorBRL = (1 / money.value.BRL)
+                const factorUSD = (1 / money.value.USD)
+                const factorEUR = (1 / money.value.EUR)
+                const BRL = tariff.value / factorBRL
+                const USD = tariff.value / factorUSD
+                const EUR = tariff.value / factorEUR
                 return {
                     description: tariff.description,
                     BRL: String(BRL.toFixed(2)),
