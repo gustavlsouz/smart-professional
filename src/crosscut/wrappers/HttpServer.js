@@ -4,7 +4,6 @@ module.exports = class HttpServer {
     constructor(properties = {}) {
         this.server = properties.server || express()
         this.logger = properties.logger || console
-        this.application = null
         this.port = 0
     }
 
@@ -16,18 +15,23 @@ module.exports = class HttpServer {
 
     get(path, middlewareFunction) {
         this.logger.log(`Setting get method on path ${path}`)
-        this.application.get(path, middlewareFunction)
+        this.server.get(path, middlewareFunction)
         return this
     }
 
     useAlways(func) {
-        this.application.use(func)
+        this.server.use(func)
+        return this
+    }
+
+    use(path, func) {
+        this.server.use(path, func)
         return this
     }
 
     listen() {
         this.logger.log(`Initializing http server on port ${this.port}`)
-        this.application.listen(this.port)
+        this.server.listen(this.port)
         return this
     }
 }
