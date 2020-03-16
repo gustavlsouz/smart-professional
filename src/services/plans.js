@@ -1,5 +1,4 @@
 const get = async (properties) => {
-    properties.logger.log(properties)
     const {
         SmartMeiRepository,
         MoneyRepository,

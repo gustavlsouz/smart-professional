@@ -50,11 +50,12 @@ class Cache {
 
     set(key, value, options = {}) {
         const stringValue = JSON.stringify(value)
-        this.log(`Setting key: ${key} options: ${options} value: ${stringValue}`)
+        this.log(`Setting key: ${key} value: ${stringValue}`)
+        this.log(options)
         Cache.data[key] = this.createValue(stringValue, options)
         return this
     }
-    
+
     cleanAll() {
         this.log('Cleaning all data from cache')
         Cache.data = {}

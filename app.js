@@ -4,17 +4,18 @@ const dependencies = require('./src')
 const graphqlHTTP = require('express-graphql');
 
 async function init() {
-    
+
+    const logger = new dependencies.crosscut.wrappers.Logger()
     // eslint-disable-next-line no-console
     console.log(JSON.stringify(dependencies, null, 2))
-    const httpServer = new dependencies.crosscut.wrappers.HttpServer()
+    const httpServer = new dependencies.crosscut.wrappers.HttpServer({ logger })
 
     const { connect } = dependencies.tools
     const rootValue = {
         plans: connect({
             method: dependencies.services.plans.get,
             props: {
-                logger: console,
+                logger,
                 dependencies,
             },
         }),

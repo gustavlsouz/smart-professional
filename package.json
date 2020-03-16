@@ -21,7 +21,9 @@
     "express": "4.17.1",
     "express-graphql": "0.9.0",
     "graphql": "14.6.0",
-    "require-smart": "1.1.2"
+    "require-smart": "1.1.2",
+    "uuid": "7.0.2",
+    "winston": "3.2.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
