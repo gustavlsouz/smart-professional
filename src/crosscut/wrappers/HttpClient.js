@@ -17,7 +17,12 @@ module.exports = class HttpClient {
                 params: options.params,
             })
             this.logger.log('Http Request finished. ', options.url)
-            this.logger.log(response.data)
+            const dataAsString = response.data && Object.is(response.data.__proto__, String.prototype)
+            if (dataAsString) {
+                this.logger.log(response.data.substring(0, 1000))
+            } else {
+                this.logger.log(response.data)
+            }
             this.logger.log(response.status)
             this.logger.log(response.statusText)
             this.logger.log(response.headers)

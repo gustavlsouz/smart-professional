@@ -3,12 +3,18 @@ class Cache {
         if (!Cache.data) {
             Cache.data = {}
             Cache.self = Cache
+            this.logger = console
         }
     }
 
     log(...args) {
         // eslint-disable-next-line no-console
-        console.log.apply(console, args)
+        this.logger.log(args)
+    }
+
+    setLogger(logger) {
+        this.logger = logger
+        return this
     }
 
     get(key) {

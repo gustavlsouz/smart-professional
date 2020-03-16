@@ -7,6 +7,7 @@ const logger = winston.createLogger({
     transports: [
         new winston.transports.File({ filename: 'logs/error.log', level: 'error', maxsize: 1000000 }),
         new winston.transports.File({ filename: 'logs/combined.log', maxsize: 1000000 }),
+        new winston.transports.Console(),
     ]
 });
 
@@ -23,6 +24,7 @@ module.exports = class Logger {
     callLogger({ method = 'info', content, metadata }) {
         this.logger[method]({
             signature: this.signature,
+            logAt: new Date(),
             content,
             metadata,
         })

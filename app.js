@@ -6,8 +6,9 @@ const graphqlHTTP = require('express-graphql');
 async function init() {
 
     const logger = new dependencies.crosscut.wrappers.Logger()
+    dependencies.crosscut.Cache.setLogger(logger)
     // eslint-disable-next-line no-console
-    console.log(JSON.stringify(dependencies, null, 2))
+    console.log(dependencies)
     const httpServer = new dependencies.crosscut.wrappers.HttpServer({ logger })
 
     const { connect } = dependencies.tools
@@ -32,7 +33,7 @@ async function init() {
         rootValue,
         graphiql: config.graphiql,
     }))
-
+    logger.log(`pid ${process.pid}`)
     return httpServer
         .setPort(config.port)
         .listen()
