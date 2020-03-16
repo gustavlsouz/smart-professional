@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "mocha \"test/**/*.spec.js\"",
-    "debug": "nodemon --inspect=9229 app.js",
+    "debug": "nodemon --inspect=9229 app.js --watch src --watch app.js",
     "lint": "eslint ."
   },
   "repository": {
