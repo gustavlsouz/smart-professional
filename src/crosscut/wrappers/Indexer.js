@@ -11,7 +11,7 @@ module.exports = class Indexer {
         this.root = rootPath || process.cwd()
     }
     load(target) {
-        this.logger.log(`Loading ${path}`)
+        this.logger.log(`Loading ${target}`)
         if (!this.root) {
             this.setRoot()
         }
