@@ -46,6 +46,7 @@ module.exports = class SmartMeiRepository {
                 .get('plans')
         } catch (error) {
             this.logger.error(error)
+            this.logger.log('Getting plans from cache')
             const plans = this.cache.get('plans')
             if (!plans) {
                 throw error

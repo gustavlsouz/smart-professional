@@ -1,9 +1,12 @@
-const cache = require('./../../../src/crosscut/Cache')
+const cache = require('../../../../src/crosscut/Cache')
 const assert = require('assert');
-const { wait } = require('./../../../src/crosscut/time')
+const dependencies = require('../../../../src')
+const { wait } = dependencies.crosscut.time
 
 describe('Cache test', () => {
-
+    beforeEach(() => {
+        dependencies.crosscut.Cache.cleanAll()
+    })
     it('Cache test - Common set and get data', () => {
         const content = cache
             .set('test', { ok: true }, { expireAt: Date.now() + 3000 })

@@ -8,7 +8,9 @@ const get = async (properties) => {
     const moneyRepository = new MoneyRepository(properties)
 
     const [plans, money] = await Promise.all([
-        smartMeiRepository.getPlans({}),
+        smartMeiRepository.getPlans({
+            font: properties.url
+        }),
         moneyRepository.get({}),
     ])
 

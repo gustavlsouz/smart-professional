@@ -12,5 +12,5 @@ type Plan {
 }
 
 type Query {
-    plans: [Plan]
+    plans(url: String): [Plan]
 }

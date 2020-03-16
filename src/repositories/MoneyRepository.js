@@ -26,6 +26,7 @@ module.exports = class MoneyRepository {
                 .get('money')
         } catch (error) {
             this.logger.error(error)
+            this.logger.log('Getting money from cache')
             const money = this.cache.get('money')
             if (!money) {
                 throw error

@@ -56,6 +56,7 @@ class Cache {
     }
     
     cleanAll() {
+        this.log('Cleaning all data from cache')
         Cache.data = {}
         return this
     }
